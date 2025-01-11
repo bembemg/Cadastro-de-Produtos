@@ -23,7 +23,7 @@ const App = () => {
 
   const fetchProducts = async () => {
     try {
-      const response = await fetch('http://https://cadastro-de-produtos-backend.onrender.com/:3001/products');
+      const response = await fetch('http://https://cadastro-de-produtos-backend.onrender.com/:5432/products');
       const data = await response.json();
 
       const sortedProducts = data.sort((a, b) => parseFloat(a.price) - parseFloat(b.price));
@@ -86,8 +86,8 @@ const App = () => {
       };
 
       const url = isEditing 
-      ? `http://https://cadastro-de-produtos-backend.onrender.com/:3001/products/${editingId}` 
-      : 'http://https://cadastro-de-produtos-backend.onrender.com/:3001/products';
+      ? `http://https://cadastro-de-produtos-backend.onrender.com/:5432/products/${editingId}` 
+      : 'http://https://cadastro-de-produtos-backend.onrender.com/:5432/products';
 
       const method = isEditing ? 'PUT' : 'POST';
 
@@ -116,7 +116,7 @@ const App = () => {
 
   const confirmDelete = async () => {
     try {
-      const response = await fetch(`http://https://cadastro-de-produtos-backend.onrender.com/:3001/products/${productToDelete}`, {
+      const response = await fetch(`http://https://cadastro-de-produtos-backend.onrender.com/:5432/products/${productToDelete}`, {
         method: 'DELETE',
       });
 
