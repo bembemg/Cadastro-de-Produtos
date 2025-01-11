@@ -23,7 +23,7 @@ const App = () => {
 
   const fetchProducts = async () => {
     try {
-      const response = await fetch('http://192.168.0.100:3001/products');
+      const response = await fetch('http://localhost:3001/products');
       const data = await response.json();
 
       const sortedProducts = data.sort((a, b) => parseFloat(a.price) - parseFloat(b.price));
@@ -81,8 +81,8 @@ const App = () => {
       }
 
       const url = isEditing 
-      ? `http://192.168.0.100:3001/products/${editingId}` 
-      : 'http://192.168.0.100:3001/products';
+      ? `http://localhost:3001/products/${editingId}` 
+      : 'http://localhost:3001/products';
 
       const method = isEditing ? 'PUT' : 'POST';
 
@@ -111,7 +111,7 @@ const App = () => {
 
   const confirmDelete = async () => {
     try {
-      const response = await fetch(`http://192.168.0.100:3001/products/${productToDelete}`, {
+      const response = await fetch(`http://localhost:3001/products/${productToDelete}`, {
         method: 'DELETE',
       });
 
