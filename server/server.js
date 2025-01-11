@@ -104,6 +104,6 @@ app.delete('/products/:id', async (req, res) => {
     }
 });
 
-app.listen(5432, '0.0.0.0', () => {
-    console.log('Servidor rodando na porta 5432');
+app.listen(3001, '0.0.0.0', () => {
+    console.log('Servidor rodando na porta 3001');
 })
