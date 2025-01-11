@@ -82,7 +82,7 @@ const App = () => {
 
       const formattedData = {
         ...formData,
-        price: formData.price.replace(',', '').replace(',', '.'),
+        price: formData.price.replace(/\./g, '').replace(',', '.'),
       };
 
       const url = isEditing 
@@ -172,13 +172,13 @@ const App = () => {
     let value = event.target.value;
 
     value = value.replace(/\D/g, '');
-    value = (parseInt(value) / 100).toFixed(2);
-    value = Number(value).toLocaleString('pt-BR', {
+    const numericValue = parseInt(value) || 0;
+    const formattedValue = (numericValue / 100).toLocaleString('pt-BR', {
       minimumFractionDigits: 2,
       maximumFractionDigits: 2
     });
 
-    setFormData(prev => ({ ...prev, price: value }));
+    setFormData(prev => ({ ...prev, price: formattedValue }));
   }
 
   const showDescription = (product) => {
@@ -186,9 +186,24 @@ const App = () => {
     descriptionModal.current.showModal();
   }
 
+  const closeDescriptionModal = () => {
+    const dialog = descriptionModal.current
+    dialog.classList.add('closing')
+    dialog.addEventListener('animationend', () => {
+      dialog.classList.remove('closing')
+      dialog.close()
+    }, { once: true })
+    resetForm();
+  }
+
   const closeDeleteModal = () => {
-    deleteModal.current.close();
-    setProductToDelete(null);
+    const dialog = deleteModal.current
+    dialog.classList.add('closing')
+    dialog.addEventListener('animationend', () => {
+      dialog.classList.remove('closing')
+      dialog.close()
+    }, { once: true })
+    resetForm();
   }
 
   return (
@@ -298,7 +313,7 @@ const App = () => {
                 </p>
               </div>
 
-              <button onClick={() => descriptionModal.current.close()}>Fechar</button>
+              <button onClick={closeDescriptionModal}>Fechar</button>
             </>
           )}
         </dialog>
