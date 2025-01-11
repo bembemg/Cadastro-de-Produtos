@@ -23,7 +23,7 @@ async function initializeDB() {
         await pool.query(`
             CREATE TABLE IF NOT EXISTS products (
             id SERIAL PRIMARY KEY,
-            name VARCHAR(255) NOT NULL,
+            name VARCHAR(24) NOT NULL,
             description TEXT,
             price DECIMAL(10, 2) NOT NULL,
             available BOOLEAN DEFAULT TRUE
