@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite --host",
+    "dev": "rimraf node_modules/.vite && rimraf node_modules/.rollup && vite --host",
     "clean": "rimraf node_modules/.vite && rimraf node_modules/.rollup",
     "build": "vite build",
     "lint": "eslint .",

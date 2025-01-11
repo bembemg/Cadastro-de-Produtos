@@ -80,6 +80,11 @@ const App = () => {
         return
       }
 
+      const formattedData = {
+        ...formData,
+        price: formData.price.replace(',', '').replace(',', '.'),
+      };
+
       const url = isEditing 
       ? `http://localhost:3001/products/${editingId}` 
       : 'http://localhost:3001/products';
@@ -91,7 +96,7 @@ const App = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(formattedData),
       });
 
       if (response.ok) {
