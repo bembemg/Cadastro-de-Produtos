@@ -131,10 +131,12 @@ const App = () => {
   }
 
   const handleEdit = (product) => {
+    const formattedPrice = product.price.toString().replace('.', ',');
+
     setFormData({
       name: product.name,
       description: product.description,
-      price: product.price,
+      price: formattedPrice,
       available: product.available
     });
     setIsEditing(true);
